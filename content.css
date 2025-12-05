@@ -1,0 +1,345 @@
+:root {
+  --rh-panel-bg: #0f172a;
+  --rh-shadow-strong: rgba(15, 23, 42, 0.7);
+  --rh-card-bg: rgba(17, 24, 39, 0.82);
+  --rh-card-shadow: rgba(15, 23, 42, 0.85);
+  --rh-card-border: #ffffff20;
+  --rh-text-primary: #e5e7eb;
+  --rh-text-contrast: #f8fafc;
+  --rh-label-muted: #8a8a8a;
+  --rh-label-secondary: #cbd5f5;
+  --rh-input-bg: rgba(15, 23, 42, 0.95);
+  --rh-input-bg-alt: rgba(15, 23, 42, 0.9);
+  --rh-input-border: rgba(148, 163, 184, 0.6);
+  --rh-reset-bg: rgba(37, 99, 235, 0.15);
+  --rh-reset-text: #60a5fa;
+  --rh-divider: rgba(255, 255, 255, 0.08);
+  --rh-icon-bg: rgba(15, 23, 42, 0.95);
+  --rh-popover-bg: rgba(15, 23, 42, 0.97);
+  --rh-popover-border: rgba(148, 163, 184, 0.7);
+  --rh-popover-divider: rgba(148, 163, 184, 0.3);
+  --rh-popover-hover: rgba(59, 130, 246, 0.25);
+}
+
+#rh-panel,
+#rh-panel * {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  box-sizing: border-box;
+  letter-spacing: normal;
+  text-transform: none;
+  font-feature-settings: normal;
+  color: inherit;
+}
+
+#rh-panel {
+  color: var(--rh-text-primary);
+}
+
+#rh-panel button,
+#rh-panel input,
+#rh-panel select,
+#rh-panel textarea {
+  all: unset;
+  box-sizing: border-box;
+  font: inherit;
+  color: inherit;
+}
+
+#rh-panel button {
+  cursor: pointer;
+}
+
+/* Panel-Basislayout */
+
+#rh-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 34vw;
+  min-width: 320px;
+  height: 100vh;
+  background: var(--rh-panel-bg);
+  box-shadow: -2px 0 18px var(--rh-shadow-strong);
+  z-index: 2147483647;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  box-sizing: border-box;
+}
+
+/* Map-Wrapper / Iframe */
+
+#rh-map-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+#rh-map-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  box-sizing: border-box;
+}
+
+/* Overlay-Card */
+
+#rh-overlay {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 420px;
+  width: calc(100% - 32px);
+  background: var(--rh-card-bg);
+  border-radius: 24px;
+  box-shadow: 0 22px 55px var(--rh-card-shadow);
+  padding: 12px 18px 12px 18px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--rh-card-border);
+  color: var(--rh-text-primary);
+  box-sizing: border-box;
+}
+
+/* Input-Felder */
+
+.rh-field {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.rh-field-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rh-label-muted);
+  margin-bottom: 3px;
+}
+
+.rh-input-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 8px;
+  padding: 7px 10px;
+  border-radius: 14px;
+  background: var(--rh-input-bg);
+  border: 1px solid var(--rh-input-border);
+  box-shadow: 0 6px 16px var(--rh-shadow-strong);
+}
+
+.rh-input-row--dest {
+  background: var(--rh-input-bg-alt);
+}
+
+.rh-input-icon {
+  font-size: 13px;
+}
+
+.rh-input {
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--rh-text-primary);
+  display: block;
+  line-height: 1.4;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+  max-width: none;
+  outline: none;
+  width: 100%;
+  justify-self: stretch;
+}
+
+.rh-input-reset {
+  margin-left: auto;
+  padding-left: 6px;
+  border: none;
+  background: transparent;
+  color: var(--rh-label-muted);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 0 6px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.rh-input-reset--visible {
+  display: inline-flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.rh-input-reset:disabled,
+.rh-input-reset--visible:disabled {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.rh-input-reset--visible:hover {
+  color: var(--rh-text-contrast);
+}
+
+/* Ergebnisbereich */
+
+#rh-panel-status {
+  font-size: 12px;
+  color: var(--rh-text-primary);
+  margin-top: 2px;
+}
+
+.rh-result {
+  border-top: 1px solid var(--rh-input-border);
+  padding-top: 6px;
+}
+
+.rh-result-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.rh-result-col {
+  flex: 1;
+  min-width: 120px;
+}
+
+.rh-result-label {
+  font-size: 13px;
+  color: var(--rh-label-secondary);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.rh-result-value {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rh-result-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rh-result-text-distance,
+.rh-result-text-time {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--rh-text-primary);
+}
+
+/* Divider zwischen Entfernung und Fahrzeit – jetzt automatisch gestreckt */
+
+.rh-result-divider {
+  width: 1px;
+  background: var(--rh-divider);
+  flex-shrink: 0;
+  align-self: stretch; /* Höhe passt sich automatisch an die Zeilenhöhe an */
+}
+
+/* Panel-Schließen-Button (Pfeil an der linken Kante) */
+
+#rh-panel-close {
+  all: unset;
+  position: absolute;
+  top: 50%;
+  left: -14px;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 42px;
+  min-height: 0;
+  border-radius: 8px 0 0 8px;
+  background: var(--rh-card-bg);
+  box-shadow: -4px 6px 16px var(--rh-shadow-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--rh-text-primary);
+  font-size: 14px;
+  padding: 0;
+}
+
+/* Collapsed-Tab rechts */
+
+#rh-panel-collapsed-toggle {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 2147483646;
+  background: linear-gradient(to bottom, #1d4ed8, #0ea5e9);
+  color: var(--rh-text-contrast);
+  border-radius: 16px 0 0 16px;
+  padding: 8px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: -4px 0 18px var(--rh-shadow-strong);
+  display: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  align-items: center;
+}
+
+/* Sicherstellen, dass Seitencss (z. B. Buttons von kleinanzeigen.de) uns nicht zerstört */
+
+#rh-panel button {
+  font-family: inherit;
+}
+
+/* Autocomplete */
+
+.rh-suggestions {
+  position: absolute;
+  z-index: 25;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  border-radius: 14px;
+  background: var(--rh-popover-bg);
+  border: 1px solid var(--rh-popover-border);
+  box-shadow: 0 12px 30px var(--rh-card-shadow);
+  z-index: 10;
+  display: none;
+  overflow: hidden;
+}
+
+.rh-suggestion {
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  cursor: pointer;
+  color: var(--rh-text-primary);
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+}
+
+.rh-suggestion + .rh-suggestion {
+  border-top: 1px solid var(--rh-popover-divider);
+}
+
+.rh-suggestion:hover,
+.rh-suggestion:focus,
+.rh-suggestion--active {
+  background: var(--rh-popover-hover);
+  outline: none;
+}
+

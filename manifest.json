@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "Route Helper (Willhaben & Kleinanzeigen)",
+  "version": "1.0.0",
+  "description": "Zeigt rechts eine Route von deiner Heimatadresse zum Inseratsort auf willhaben.at und kleinanzeigen.de.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://www.willhaben.at/*",
+    "*://*.willhaben.at/*",
+    "*://www.kleinanzeigen.de/*",
+    "*://*.kleinanzeigen.de/*",
+    "https://nominatim.openstreetmap.org/*",
+    "https://router.project-osrm.org/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.willhaben.at/*",
+        "*://*.willhaben.at/*",
+        "*://www.kleinanzeigen.de/*",
+        "*://*.kleinanzeigen.de/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "map/map.html",
+        "map/map.js",
+        "map/map.css",
+        "map/leaflet.js",
+        "map/leaflet.css",
+        "map/images/*",
+        "map/icons/*"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
