@@ -1,47 +1,50 @@
-# RouteHelper – Browser Extension (Firefox)
-Eine Firefox-Erweiterung, die automatisch Entfernungen und Fahrzeiten zu Inseraten auf **willhaben.at** und **kleinanzeigen.de** berechnet.  
-Die Extension blendet rechts ein modernes Split-View-Panel ein, zeigt eine interaktive OpenStreetMap-Karte mit Route an und berechnet Entfernung & Fahrzeit per OSRM-Routing.
+# RouteHelper – Browser Extension
+
+RouteHelper blendet auf **willhaben.at** und **kleinanzeigen.de** ein kompaktes Routen-Panel ein, zeigt eine interaktive OpenStreetMap-Karte und berechnet Entfernung sowie Fahrzeit mit OSRM-Routing.
 
 ---
 
-## ✨ Funktionen
+## Funktionen
 
-- Automatische Erkennung der Zieladresse direkt aus dem Inserat  
-- Moderne „Split-Screen“-Routenanzeige
-- Interaktive Karte mit OpenStreetMap / Leaflet
-- Automatische Routenberechnung sobald Start & Ziel bekannt sind
-- Permanentes Speichern der Heimatadresse (optional)
-- Elegantes UI mit Frosted-Glass-Design
-- Start/Ziel-Eingabe im Overlay über der Karte
-- Entfernung (km) und Fahrzeit (Minuten) werden klar hervorgehoben
-- Ein-/Ausklappbarer Panel-Button
-- Saubere interne Architektur (content script → map iframe)
+- Zieladresse wird automatisch aus dem Inserat erkannt; sobald eine Startadresse vorliegt, erscheint sofort die Route.
+- Split-Panel neben dem Inserat mit Eingaben für Start/Ziel, Karte, Marker und Strecke.
+- Optional speicherbare Heimatadresse bleibt ausschließlich lokal im Browser.
+- Panel-Schaltfläche lässt sich ein- und ausklappen, damit das Inserat nicht verdeckt bleibt.
+- Entfernung (km) und Fahrzeit (d/h/min) werden klar lesbar angezeigt.
 
 ---
 
-## 🔧 Installation (temporär – Developer Mode)
+## Installation (temporär)
 
-1. Zip-Datei herunterladen und **entpacken**  
-2. Firefox öffnen  
-3. `about:debugging` in die Adresszeile eingeben  
-4. Links **“This Firefox”** / „Dieses Firefox“ auswählen  
-5. Klick auf **„Temporäres Add-on laden…“**  
-6. Die Datei **manifest.json** im entpackten Projektordner auswählen
+1. Dieses Repository herunterladen (z. B. über **Code → Download ZIP** oder `git clone`) und den Ordner bereit halten.
+2. Browser-spezifische Schritte befolgen:
 
-Das Add-on erscheint nun in der Liste und ist aktiv.  
-⚠ Hinweis: Temporäre Add-ons verschwinden nach einem Browser-Neustart.
+### Firefox
+1. Firefox öffnen und `about:debugging` in die Adressleiste eingeben.
+2. Im Abschnitt **Dieses Firefox / This Firefox** auf **Temporäres Add-on laden** klicken.
+3. Die entpackte `manifest.json` auswählen.
+4. Hinweis: Temporäre Add-ons verschwinden nach einem Browser-Neustart – bei Bedarf einfach erneut laden.
 
----
-
-## 🧭 Nutzung
-
-1. `about:addons` öffnen → RouteHelper auswählen  
-2. Heimatadresse eingeben (wird lokal gespeichert)  
-3. Eine Anzeige auf **willhaben.at** oder **kleinanzeigen.de** öffnen  
-4. Rechts erscheint automatisch das Panel mit Route, Entfernung & Fahrzeit  
-5. Panel kann eingeklappt werden (Pfeil-Button am Rand)
+### Chrome / Chromium
+1. Chrome öffnen und `chrome://extensions` aufrufen.
+2. Rechts oben den **Entwicklermodus** aktivieren.
+3. Auf **Entpackte Erweiterung laden** klicken und den Projektordner auswählen.
+4. Solange RouteHelper nicht im Chrome Web Store verfügbar ist, müssen Updates manuell durch erneutes Laden erfolgen.
 
 ---
 
-## 🗂 Projektstruktur
+## Nutzung
 
+1. RouteHelper über `about:addons` (Firefox) bzw. `chrome://extensions` (Chrome) aktivieren.
+2. Beim ersten Start eine Heimatadresse oder beliebige Startadresse eingeben – sie bleibt nur lokal gespeichert.
+3. Ein Inserat auf **willhaben.at** oder **kleinanzeigen.de** öffnen.
+4. Das Panel erscheint rechts, zeigt Karte, Entfernung und Fahrzeit; über den Pfeil am Rand lässt es sich aus- und einklappen.
+
+---
+
+## Datenschutz & Technik
+
+- Verwendet die WebExtension-APIs von Firefox sowie die Chromium Extension API.
+- Karte basiert auf Leaflet mit OpenStreetMap-Kacheln.
+- Routenberechnung erfolgt über den öffentlichen OSRM-Dienst; es werden keine eigenen Server verwendet.
+- Die gespeicherte Heimatadresse bleibt vollständig im lokalen Browser-Speicher; sie wird nicht nach außen übertragen.
